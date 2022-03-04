@@ -1,4 +1,6 @@
-#include "Linked_List.cpp"
+#include <iostream>
+#include "Linked_List.h"
+
 
 int printmenu()
 {
