@@ -6,14 +6,15 @@ int printmenu()
 {
   int x;
   std::cout << "\n1: Print the list.";
-  std::cout << "\n2: Add an item to the front of the list.";
-  std::cout << "\n3: Add an item to the back of the list.";
-  std::cout << "\n4: Delete an item from the list.";
+  std::cout << "\n2: Add an item to the front of the list";
+  std::cout << "\n3: Add an item to the back of the list";
+  std::cout << "\n4: Delete an item from the list";
   std::cout << "\n5: Search the list for a item";
   std::cout << "\n6: Return the number of items in the list";
-  std::cout << "\n7: use an iterator";
-  std::cout << "\n8: Quit.\n\n";
-  std::cin >> x;
+  std::cout << "\n7: Iterate from the front";
+  std::cout << "\n8: Iterate from the back";
+  std::cout << "\n9: Quit.\n\n";
+  std::cin >> x; std::cout << "\n";
 
   return x;
 }
@@ -50,27 +51,31 @@ void Length(LinkedList<int>& l)
   length = l.getLength();
   std::cout << "\nThis List has " << length << " nodes." << std::endl;
 }
-void Iterate(LinkedList<int>& l)
+void IterateFront(LinkedList<int>& l, LinkedList<int>::Iterator i)
 {
-
+  std::cout << "\n";
+  for (auto i = l.firstnode(); i != l.end(); ++i)
+  {
+    std::cout << * i << " ";
+  }
+  std::cout << "\n";
+}
+void IterateBack(LinkedList<int>& l, LinkedList<int>::Iterator i)
+{
+  std::cout << "\n";
+  for (auto i = l.lastnode(); i != l.end(); --i)
+  {
+    std::cout << *i << " ";
+  }
+  std::cout << "\n";
 }
 
 int main()
 {
-  LinkedList<int> List; LinkedList<int> List2;  //my list objects
-  //LinkedListIterator<int> Iterator; // not sure what to do with this 
-  List.AddBack(150); List.AddBack(50); List.AddBack(25);
-  List.printList();
-
-  //for (LinkedList<int>::Iterator = I; I.begin(); I != I.end(); ++I)
-  //{
-  //  std::cout << *I << std::endl;
-  //}
-
-
+  LinkedList<int> List; LinkedList<int> List2; LinkedList<int>::Iterator iterator;
   int choice;
   choice = printmenu();
-  while (choice != 8)
+  while (choice != 9)
   {
     switch (choice)
     {
@@ -80,20 +85,21 @@ int main()
     case 4: deleteListItem(List); break;
     case 5: searchList(List); break;
     case 6: Length(List); break;
-    case 7: Iterate(List); break;
+    case 7: IterateFront(List, iterator); break;
+    case 8: IterateBack(List, iterator); break;
 
     default: std::cout << "\n Enter a valid choice: ";
     }
     choice = printmenu();
   }
-
+  std::cout << "\n----------------------------\n" << std::endl;
+  std::cout << "Testing Copy constructor, and destructor. \n";
   List2 = List;
   std::cout << "\nCopying List in List2. \n";
-  List2.printList();
+  std::cout << "\nList 2: "; List2.printList();
   std::cout << "\nPrinting List2. \n";
   List2.~LinkedList();
   std::cout << "\nDeleting List2. \n";
   List2.printList();
-  std::cout << "\nPrinting List2. \n";
 
 }
