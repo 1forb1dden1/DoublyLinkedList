@@ -14,8 +14,8 @@ template <class T>
 class LinkedList 
 {
 private:
-  node<T>*  first; // node<T>* first
-  node<T>*   last; // node<T>* last
+  node<T>*  first; 
+  node<T>*   last; 
   int      length;
 
 public:
