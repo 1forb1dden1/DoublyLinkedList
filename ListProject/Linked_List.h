@@ -1,3 +1,8 @@
+/*intiially had my class separated into a .h and .cpp file. But, I was wondering there was a linker error when I would include "Linked_List.h" in my main file. Through some 
+digging,I found out that the linker cannot find my defined template class when searching for it. When the compiler compiles, the template will be set to a certain type.
+But, when the linker looks for that specific type in the cpp files. It will never find it unless we create a cpp file for every single type. This is why I only have a .h file 
+and why I didn't separate them into a .h and .cpp file. */
+
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include <iostream>
@@ -239,20 +244,18 @@ public:
   {
     return length;
   }
-
-  Iterator lastnode()
-  {
-    return Iterator(last);
-  }
   Iterator firstnode()
   {
     return Iterator(first);
+  }
+  Iterator lastnode()
+  {
+    return Iterator(last);
   }
   Iterator end()
   {
     return Iterator(nullptr);
   }
-
 };
 
 #endif
