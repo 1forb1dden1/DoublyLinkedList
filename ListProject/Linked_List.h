@@ -19,10 +19,11 @@ private:
   int      length;
 
 public:
+
   class Iterator
   {
   private:
-    LinkedList* current; 
+    node<T>* current; 
   public:
     Iterator()
     {
@@ -41,6 +42,11 @@ public:
       current = current->next;
       return *this;
     }
+    Iterator& operator--()
+    {
+      current = current->prev;
+      return *this;
+    }
     bool operator==(const Iterator& right) const
     {
       return(current == right.current);
@@ -50,6 +56,7 @@ public:
       return (current != right.current);
     }
   };
+
   LinkedList()
   {
     first = NULL;
@@ -118,7 +125,6 @@ public:
     else
     {
       node<T>* first_next = first;
-      std::cout << "\n";
       while (first_next != NULL)
       {
         std::cout << first_next->info << " ";
@@ -233,15 +239,18 @@ public:
   {
     return length;
   }
-  Iterator begin()
+
+  Iterator lastnode()
   {
-    Iterator(first);
-    return Iterator;
+    return Iterator(last);
+  }
+  Iterator firstnode()
+  {
+    return Iterator(first);
   }
   Iterator end()
   {
-    Iterator(last);
-    return Iterator;
+    return Iterator(nullptr);
   }
 
 };
