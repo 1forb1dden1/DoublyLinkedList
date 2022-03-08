@@ -40,10 +40,16 @@ void deleteListItem(LinkedList<int>& l)
 }
 void searchList(LinkedList<int>& l)
 {
-  int num = 0;
-  std::cout << "\nFind Number: "; std::cin >> num;
-  l.SearchItem(num);
-
+    int num = 0;
+    std::cout << "\nFind Number: "; std::cin >> num;
+    if (l.SearchItem(num) == 0)
+    {
+        std::cout << "The item is not in the list. \n";
+    }
+    else
+    {
+        std::cout << "The item is in the list. \n";
+    }
 }
 void Length(LinkedList<int>& l)
 {
