@@ -132,7 +132,7 @@ public:
   }
   void deleteItem(T item)
   {
-    if (first == NULL) { std::cout << " The list is empty."; }
+   if (first == NULL) { std::cout << " The list is empty."; }
     else
     {
       node<T>* p = first;
@@ -140,7 +140,13 @@ public:
       {
         std::cout << "The list is empty. " << std::endl;
       }
-      else if (p->info == item)
+      else if (p->info == item && p->next == nullptr)
+      {
+        delete p;
+        first = nullptr;
+        length--;
+      }
+      else if (p->info == item && p->next != nullptr) // deletes first if first is not the only node
       {
         first = p->next;
         p->next->prev = nullptr;
@@ -150,7 +156,6 @@ public:
       }
       else
       {
-        node<T>* p = first;
         while (p->next != nullptr && p->info != item)
         {
           p = p->next;
