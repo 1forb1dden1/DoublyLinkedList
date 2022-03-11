@@ -1,8 +1,3 @@
-/*intiially had my class separated into a .h and .cpp file. But, I was wondering there was a linker error when I would include "Linked_List.h" in my main file. Through some 
-digging,I found out that the linker cannot find my defined template class when searching for it. I read that it is because When the compiler compiles, the template will be set
-to a certain type. But, when the linker looks for that specific type in the cpp files. It will never find it unless we create a cpp file for every single type. 
-This is why I only have a .h file and why I didn't separate them into a .h and .cpp file. */
-
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include <iostream>
@@ -19,12 +14,10 @@ template <class T>
 class LinkedList 
 {
 private:
-  node<T>*  first; 
-  node<T>*   last; 
-  int      length;
-
+  node<T>*  first; // node<T>* first
+  node<T>*   last; // node<T>* last
+  T        length;
 public:
-
   class Iterator
   {
   private:
@@ -61,12 +54,11 @@ public:
       return (current != right.current);
     }
   };
-
   LinkedList()
   {
-    first = NULL;
-    last = NULL;
-    T length = 0;
+    first = nullptr;
+    last = nullptr;
+    length = 0;
   }
   ~LinkedList()
   {
@@ -244,18 +236,19 @@ public:
   {
     return length;
   }
-  Iterator firstnode()
-  {
-    return Iterator(first);
-  }
   Iterator lastnode()
   {
     return Iterator(last);
+  }
+  Iterator firstnode()
+  {
+    return Iterator(first);
   }
   Iterator end()
   {
     return Iterator(nullptr);
   }
+
 };
 
 #endif
